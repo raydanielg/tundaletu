@@ -11,6 +11,14 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+export const metadata = {
+  title: "Tunda",
+  description: "Tunda - Jipatie mwenza wa maisha",
+  icons: {
+    icon: "/icon.svg",
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
