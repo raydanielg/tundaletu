@@ -279,31 +279,61 @@ export default function Page() {
         ))}
       </div>
       <footer className="border-t bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
-          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <div>
+              <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-foreground">Tunda</h3>
+              <ul className="space-y-2">
+                <li><a href="/about" className="text-xs text-muted-foreground hover:text-primary transition-colors">Kuhusu Tunda</a></li>
+                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">Sera ya Faragha</a></li>
+                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-primary transition-colors">Sharti za Matumizi</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-foreground">Akaunti</h3>
+              <ul className="space-y-2">
+                <li><a href="/login" className="text-xs text-muted-foreground hover:text-primary transition-colors">Ingia</a></li>
+                <li><a href="/signup" className="text-xs text-muted-foreground hover:text-primary transition-colors">Jiunge</a></li>
+                <li><a href="/chat" className="text-xs text-muted-foreground hover:text-primary transition-colors">Chat</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-foreground">Msaada</h3>
+              <ul className="space-y-2">
+                <li><a href="/help" className="text-xs text-muted-foreground hover:text-primary transition-colors">Msaada</a></li>
+                <li><a href="/safety" className="text-xs text-muted-foreground hover:text-primary transition-colors">Usalama</a></li>
+                <li><a href="/contact" className="text-xs text-muted-foreground hover:text-primary transition-colors">Wasiliana Nasi</a></li>
+                <li><a href="/report" className="text-xs text-muted-foreground hover:text-primary transition-colors">Ripoti Tatizo</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xs font-bold uppercase tracking-wider text-foreground">Fuata Tunda</h3>
+              <div className="flex items-center gap-3">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <IconBrandInstagram className="size-5" />
+                </a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <IconBrandFacebook className="size-5" />
+                </a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <IconBrandX className="size-5" />
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <IconBrandTiktok className="size-5" />
+                </a>
+                <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                  <IconBrandWhatsapp className="size-5" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-6 flex flex-col items-center justify-between gap-3 border-t pt-4 sm:flex-row">
             <a href="/" className="flex items-center gap-2">
               <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
                 <IconApple className="size-3.5" />
               </div>
               <span className="text-sm font-bold">Tunda</span>
             </a>
-            <div className="flex items-center gap-3">
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <IconBrandInstagram className="size-5" />
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <IconBrandFacebook className="size-5" />
-              </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <IconBrandX className="size-5" />
-              </a>
-              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <IconBrandTiktok className="size-5" />
-              </a>
-              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                <IconBrandWhatsapp className="size-5" />
-              </a>
-            </div>
             <p className="text-xs text-muted-foreground">
               &copy; 2026 Tunda. Haki zote zimehifadhiwa.
             </p>
