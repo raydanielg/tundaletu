@@ -22,9 +22,11 @@ import {
   IconPlayerPlay,
   IconMessage,
   IconUserCircle,
-  IconHeart,
-  IconShield,
-  IconMail,
+  IconBrandInstagram,
+  IconBrandFacebook,
+  IconBrandX,
+  IconBrandTiktok,
+  IconBrandWhatsapp,
 } from "@tabler/icons-react"
 import { useTheme } from "next-themes"
 import {
@@ -178,7 +180,7 @@ export default function Page() {
             <div className="flex items-center gap-2">
               <h2 className="text-lg font-bold">{section.level}</h2>
               <div className="h-px flex-1 bg-border" />
-              <Button size="sm" variant="ghost">View All</Button>
+              <Button size="sm" variant="ghost" onClick={() => window.location.href = `/level/${section.level.toLowerCase()}`}>View All</Button>
             </div>
             <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8">
               {section.cards.map((card) => (
@@ -277,54 +279,30 @@ export default function Page() {
         ))}
       </div>
       <footer className="border-t bg-background">
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
-            <div className="col-span-2 sm:col-span-1">
-              <a href="/" className="flex items-center gap-2">
-                <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                  <IconApple className="size-4" />
-                </div>
-                <span className="text-lg font-bold">Tunda</span>
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <a href="/" className="flex items-center gap-2">
+              <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                <IconApple className="size-3.5" />
+              </div>
+              <span className="text-sm font-bold">Tunda</span>
+            </a>
+            <div className="flex items-center gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <IconBrandInstagram className="size-5" />
               </a>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                Jipatie mwenza wa maisha. Tunda ni jukwaa la kupata watu wa kweli kwa mahusiano ya dhati Tanzania.
-              </p>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-bold">Tunda</h3>
-              <ul className="space-y-2">
-                <li><a href="/about" className="text-xs text-muted-foreground hover:text-foreground">Kuhusu Tunda</a></li>
-                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-foreground">Sera ya Faragha</a></li>
-                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-foreground">Sharti za Matumizi</a></li>
-                <li><a href="/contact" className="text-xs text-muted-foreground hover:text-foreground">Wasiliana Nasi</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-bold">Akaunti</h3>
-              <ul className="space-y-2">
-                <li><a href="/login" className="text-xs text-muted-foreground hover:text-foreground">Ingia</a></li>
-                <li><a href="/signup" className="text-xs text-muted-foreground hover:text-foreground">Jiunge</a></li>
-                <li><a href="/forgot-password" className="text-xs text-muted-foreground hover:text-foreground">Umesahau Password?</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-bold">Msaada</h3>
-              <ul className="space-y-2">
-                <li><a href="/help" className="text-xs text-muted-foreground hover:text-foreground">Msaada</a></li>
-                <li><a href="/safety" className="text-xs text-muted-foreground hover:text-foreground">Usalama</a></li>
-                <li><a href="/report" className="text-xs text-muted-foreground hover:text-foreground">Ripoti Tatizo</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row">
-            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <IconShield className="size-3.5 text-primary" />
-              <span>Tunda inalinda faragha yako</span>
-            </div>
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <span>Imetengenezwa kwa</span>
-              <IconHeart className="size-3.5 text-primary" />
-              <span>Tanzania</span>
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <IconBrandFacebook className="size-5" />
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <IconBrandX className="size-5" />
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <IconBrandTiktok className="size-5" />
+              </a>
+              <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
+                <IconBrandWhatsapp className="size-5" />
+              </a>
             </div>
             <p className="text-xs text-muted-foreground">
               &copy; 2026 Tunda. Haki zote zimehifadhiwa.
