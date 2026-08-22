@@ -178,7 +178,7 @@ export default function LevelPage({ params }: { params: Promise<{ level: string 
                   alt={card.nickname}
                   className="absolute inset-0 size-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 {filter === "top" && (
                   <div className="absolute right-1 top-1 rounded bg-black/60 px-1.5 py-0.5 text-[10px] font-bold text-white">
                     #{card.rank}
@@ -186,12 +186,6 @@ export default function LevelPage({ params }: { params: Promise<{ level: string 
                 )}
                 <div className={`absolute left-0 top-0 size-3 rounded-br-full ${colors.from}`} />
                 <div className={`absolute right-0 bottom-0 size-3 rounded-tl-full ${colors.to}`} />
-                <CardContent className="relative flex h-full items-end pt-2 pb-2">
-                  <div className="w-full">
-                    <p className="truncate text-xs font-bold text-white">{card.nickname}</p>
-                    <p className="truncate text-[10px] text-white/70">{card.username}</p>
-                  </div>
-                </CardContent>
               </DialogTrigger>
               <DialogContent className="w-[calc(100vw-1.5rem)] max-w-md p-0 max-h-[90vh] overflow-y-auto">
                 <div className="relative mb-3">
