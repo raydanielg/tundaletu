@@ -22,6 +22,9 @@ import {
   IconPlayerPlay,
   IconMessage,
   IconUserCircle,
+  IconHeart,
+  IconShield,
+  IconMail,
 } from "@tabler/icons-react"
 import { useTheme } from "next-themes"
 import {
@@ -74,12 +77,33 @@ const levels = [
   "Elite",
 ]
 
+const levelColors: Record<string, { from: string; to: string }> = {
+  Regular: { from: "bg-blue-500", to: "bg-cyan-400" },
+  Premium: { from: "bg-amber-500", to: "bg-yellow-400" },
+  VIP: { from: "bg-purple-500", to: "bg-pink-400" },
+  Elite: { from: "bg-red-500", to: "bg-orange-400" },
+}
+
+const cardImages = [
+  "/download (12).jfif",
+  "/download (13).jfif",
+  "/download (14).jfif",
+  "/download (15).jfif",
+  "/download (16).jfif",
+  "/download (17).jfif",
+  "/download (18).jfif",
+  "/download (19).jfif",
+  "/download (20).jfif",
+  "/download (21).jfif",
+]
+
 const sections = levels.map((level, sIdx) => ({
   level,
   cards: Array.from({ length: 16 }, (_, i) => {
     const nicknames = ["Amminey", "Johari", "Mzizi", "Babu", "Simba", "Punda", "Kaka", "Mwamba", "Jumaa", "Kibo", "Daudi", "Nuru", "Baraka", "Fundi", "Jabari", "Shuja"]
     const nickname = nicknames[(sIdx * 16 + i) % nicknames.length] ?? "Tunda"
     const username = `@${nickname.toLowerCase()}${(sIdx * 16 + i + 1) % 100}`
+    const cardImg = cardImages[(sIdx * 16 + i) % cardImages.length]
     return {
     id: sIdx * 16 + i + 1,
     title: `${level} Video ${i + 1}`,
@@ -88,16 +112,17 @@ const sections = levels.map((level, sIdx) => ({
     phone: `+255 7${(i % 10)}${((i + 3) % 10)} ${((i + 7) % 10)}${((i + 1) % 10)}${((i + 5) % 10)} ${((i + 2) % 10)}${((i + 8) % 10)}${((i + 4) % 10)}`,
     description: `Naitwa ${nickname}, mwanaume mwenye umri wa ${20 + (i % 15)} miaka, mwenye urefu wa ${165 + (i % 20)} cm. Napenda sana mapenzi ya dhati na mahusiano ya kweli. Nina tabia nzuri, mpole, na mwenye kujali. Natafuta mwenza wa maisha ambaye tunaelewana na kujaliiana.`,
     avatar: `https://i.pravatar.cc/150?img=${(sIdx * 16 + i) % 70 + 1}`,
-    cover: `https://picsum.photos/seed/cover${sIdx * 16 + i}/600/400`,
+    cover: cardImg,
+    image: cardImg,
     images: Array.from({ length: 8 }, (_, img) => ({
       id: img + 1,
-      src: `https://picsum.photos/seed/img${sIdx * 16 + i}_${img}/300/300`,
+      src: cardImages[(sIdx * 16 + i + img) % cardImages.length],
     })),
     videos: Array.from({ length: 8 }, (_, v) => ({
       id: v + 1,
       title: `Video ${v + 1} - ${nickname}`,
       duration: `${(v + 1)}:${(v + 3) % 6}0`,
-      thumb: `https://picsum.photos/seed/vid${sIdx * 16 + i}_${v}/120/120`,
+      thumb: cardImages[(sIdx * 16 + i + v) % cardImages.length],
     })),
     }
   }),
@@ -162,13 +187,24 @@ export default function Page() {
                     nativeButton={false}
                     render={
                       <Card
-                        className="aspect-square cursor-pointer overflow-hidden transition-shadow hover:ring-2 hover:ring-primary/50"
+                        className="relative aspect-square cursor-pointer overflow-hidden transition-shadow hover:ring-2 hover:ring-primary/50"
                         size="sm"
                       />
                     }
                   >
-                    <CardContent className="flex h-full items-end pt-2 pb-2">
-                      <p className="truncate text-xs font-medium">{card.title}</p>
+                    <img
+                      src={card.image}
+                      alt={card.nickname}
+                      className="absolute inset-0 size-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    <div className={`absolute left-0 top-0 size-3 rounded-br-full ${levelColors[section.level]?.from ?? "bg-primary"}`} />
+                    <div className={`absolute right-0 bottom-0 size-3 rounded-tl-full ${levelColors[section.level]?.to ?? "bg-primary"}`} />
+                    <CardContent className="relative flex h-full items-end pt-2 pb-2">
+                      <div className="w-full">
+                        <p className="truncate text-xs font-bold text-white">{card.nickname}</p>
+                        <p className="truncate text-[10px] text-white/70">{card.username}</p>
+                      </div>
                     </CardContent>
                   </DialogTrigger>
                   <DialogContent className="w-[calc(100vw-1.5rem)] max-w-md p-0 max-h-[90vh] overflow-y-auto">
@@ -240,6 +276,62 @@ export default function Page() {
           </div>
         ))}
       </div>
+      <footer className="border-t bg-background">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
+            <div className="col-span-2 sm:col-span-1">
+              <a href="/" className="flex items-center gap-2">
+                <div className="flex size-7 items-center justify-center rounded-md bg-primary text-primary-foreground">
+                  <IconApple className="size-4" />
+                </div>
+                <span className="text-lg font-bold">Tunda</span>
+              </a>
+              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                Jipatie mwenza wa maisha. Tunda ni jukwaa la kupata watu wa kweli kwa mahusiano ya dhati Tanzania.
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-bold">Tunda</h3>
+              <ul className="space-y-2">
+                <li><a href="/about" className="text-xs text-muted-foreground hover:text-foreground">Kuhusu Tunda</a></li>
+                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-foreground">Sera ya Faragha</a></li>
+                <li><a href="/terms" className="text-xs text-muted-foreground hover:text-foreground">Sharti za Matumizi</a></li>
+                <li><a href="/contact" className="text-xs text-muted-foreground hover:text-foreground">Wasiliana Nasi</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-bold">Akaunti</h3>
+              <ul className="space-y-2">
+                <li><a href="/login" className="text-xs text-muted-foreground hover:text-foreground">Ingia</a></li>
+                <li><a href="/signup" className="text-xs text-muted-foreground hover:text-foreground">Jiunge</a></li>
+                <li><a href="/forgot-password" className="text-xs text-muted-foreground hover:text-foreground">Umesahau Password?</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="mb-3 text-sm font-bold">Msaada</h3>
+              <ul className="space-y-2">
+                <li><a href="/help" className="text-xs text-muted-foreground hover:text-foreground">Msaada</a></li>
+                <li><a href="/safety" className="text-xs text-muted-foreground hover:text-foreground">Usalama</a></li>
+                <li><a href="/report" className="text-xs text-muted-foreground hover:text-foreground">Ripoti Tatizo</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-6 sm:flex-row">
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <IconShield className="size-3.5 text-primary" />
+              <span>Tunda inalinda faragha yako</span>
+            </div>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <span>Imetengenezwa kwa</span>
+              <IconHeart className="size-3.5 text-primary" />
+              <span>Tanzania</span>
+            </div>
+            <p className="text-xs text-muted-foreground">
+              &copy; 2026 Tunda. Haki zote zimehifadhiwa.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

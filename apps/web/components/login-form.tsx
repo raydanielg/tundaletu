@@ -14,6 +14,7 @@ import {
   FieldLabel,
 } from "@workspace/ui/components/field"
 import { Input } from "@workspace/ui/components/input"
+import { IconUser, IconLock } from "@tabler/icons-react"
 
 export function LoginForm({
   className,
@@ -21,7 +22,7 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="border-0 shadow-none sm:border sm:shadow-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Karibu Tunda</CardTitle>
           <CardDescription>
@@ -33,29 +34,42 @@ export function LoginForm({
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="username">Username</FieldLabel>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="@amminey"
-                  required
-                />
+                <div className="relative">
+                  <IconUser className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="Andika username yako"
+                    className="pl-9"
+                    required
+                  />
+                </div>
               </Field>
               <Field>
                 <div className="flex items-center">
                   <FieldLabel htmlFor="password">Password</FieldLabel>
                   <a
-                    href="#"
-                    className="ms-auto text-sm underline-offset-4 hover:underline"
+                    href="/forgot-password"
+                    className="ms-auto text-xs font-medium text-primary underline-offset-4 hover:underline"
                   >
                     Umesahau password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <div className="relative">
+                  <IconLock className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="Andika password yako"
+                    className="pl-9"
+                    required
+                  />
+                </div>
               </Field>
               <Field>
                 <Button type="submit" className="w-full">Login</Button>
-                <FieldDescription className="text-center">
-                  Huna akaunti? <a href="/signup">Jiunge sasa</a>
+                <FieldDescription className="text-center text-sm">
+                  Huna akaunti? <a href="/signup" className="font-medium text-primary underline-offset-4 hover:underline">Jiunge sasa</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>

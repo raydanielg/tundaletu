@@ -21,6 +21,10 @@ import {
   IconInfoCircle,
   IconEye,
   IconEyeOff,
+  IconUser,
+  IconLock,
+  IconPhone,
+  IconAt,
 } from "@tabler/icons-react"
 
 export function SignupForm({
@@ -32,7 +36,7 @@ export function SignupForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="border-0 shadow-none sm:border sm:shadow-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Jiunge na Tunda</CardTitle>
           <CardDescription>
@@ -44,48 +48,64 @@ export function SignupForm({
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="realname">Jina Kamili</FieldLabel>
-                <Input
-                  id="realname"
-                  type="text"
-                  placeholder="Mfano: Ammini Juma"
-                  required
-                />
+                <div className="relative">
+                  <IconUser className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="realname"
+                    type="text"
+                    placeholder="Andika jina lako kamili"
+                    className="pl-9"
+                    required
+                  />
+                </div>
                 <FieldDescription>
                   Hili ni jina lako halisi. Haliwezi kuonekana kwa wengine.
                 </FieldDescription>
               </Field>
               <Field>
                 <FieldLabel htmlFor="nickname">Nickname</FieldLabel>
-                <Input
-                  id="nickname"
-                  type="text"
-                  placeholder="Mfano: Amminey"
-                  required
-                />
+                <div className="relative">
+                  <IconUser className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="nickname"
+                    type="text"
+                    placeholder="Andika nickname yako"
+                    className="pl-9"
+                    required
+                  />
+                </div>
                 <FieldDescription>
                   Hili ndilo litakaloonekana kwa watumiaji wengine.
                 </FieldDescription>
               </Field>
               <Field>
                 <FieldLabel htmlFor="username">Username</FieldLabel>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="@amminey"
-                  required
-                />
+                <div className="relative">
+                  <IconAt className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="Andika username yako"
+                    className="pl-9"
+                    required
+                  />
+                </div>
                 <FieldDescription>
                   Username ni la lazima. Hii ndio akaunti yako ya kuingia.
                 </FieldDescription>
               </Field>
               <Field>
                 <FieldLabel htmlFor="phone">Namba ya Simu</FieldLabel>
-                <Input
-                  id="phone"
-                  type="tel"
-                  placeholder="+255 7XX XXX XXX"
-                  required
-                />
+                <div className="relative">
+                  <IconPhone className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="Andika namba yako ya simu"
+                    className="pl-9"
+                    required
+                  />
+                </div>
                 <div className="flex items-start gap-2 rounded-lg bg-primary/10 px-3 py-2">
                   <IconInfoCircle className="size-4 shrink-0 text-primary mt-0.5" />
                   <p className="text-xs text-primary font-medium leading-relaxed">
@@ -96,9 +116,12 @@ export function SignupForm({
               <Field>
                 <FieldLabel htmlFor="password">Password</FieldLabel>
                 <div className="relative">
+                  <IconLock className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="password"
                     type={showPassword ? "text" : "password"}
+                    placeholder="Tengeneza password yako"
+                    className="pl-9"
                     required
                   />
                   <button
@@ -155,8 +178,8 @@ export function SignupForm({
                 <Button type="submit" className="w-full" disabled={!gender}>
                   Jiunge
                 </Button>
-                <FieldDescription className="text-center">
-                  Una akaunti tayari? <a href="/login">Ingia hapa</a>
+                <FieldDescription className="text-center text-sm">
+                  Una akaunti tayari? <a href="/login" className="font-medium text-primary underline-offset-4 hover:underline">Ingia hapa</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>
