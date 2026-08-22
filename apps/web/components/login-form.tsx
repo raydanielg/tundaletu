@@ -1,4 +1,5 @@
 import { cn } from "@workspace/ui/lib/utils"
+import { useAuth } from "@/components/auth-provider"
 import { Button } from "@workspace/ui/components/button"
 import {
   Card,
@@ -20,6 +21,16 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const { login } = useAuth()
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
+    const username = (form.elements.namedItem("username") as HTMLInputElement).value
+    login(username)
+    window.location.href = "/chat"
+  }
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="border-0 shadow-none sm:border sm:shadow-sm">
@@ -30,7 +41,7 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="username">Username</FieldLabel>

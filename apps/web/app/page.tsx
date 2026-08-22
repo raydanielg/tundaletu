@@ -42,6 +42,7 @@ import {
   TabsTrigger,
   TabsContent,
 } from "@workspace/ui/components/tabs"
+import { GenderGate } from "@/components/gender-gate"
 
 const regions = [
   { name: "Dar es Salaam", users: 1240 },
@@ -135,6 +136,7 @@ export default function Page() {
 
   return (
     <div className="min-h-svh">
+      <GenderGate />
       <header className="sticky top-0 z-10 flex items-center justify-between border-b bg-background/95 px-4 py-3 backdrop-blur">
         <div className="flex items-center gap-2">
           <IconApple className="size-5" />

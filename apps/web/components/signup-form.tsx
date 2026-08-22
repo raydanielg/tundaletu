@@ -1,4 +1,5 @@
 import { cn } from "@workspace/ui/lib/utils"
+import { useAuth } from "@/components/auth-provider"
 import { Button } from "@workspace/ui/components/button"
 import {
   Card,
@@ -31,8 +32,19 @@ export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const { login } = useAuth()
   const [gender, setGender] = useState<"male" | "female" | null>(null)
   const [showPassword, setShowPassword] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!gender) return
+    const form = e.target as HTMLFormElement
+    const username = (form.elements.namedItem("username") as HTMLInputElement).value
+    const nickname = (form.elements.namedItem("nickname") as HTMLInputElement).value
+    login(username, nickname)
+    window.location.href = "/chat"
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -44,7 +56,7 @@ export function SignupForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="realname">Jina Kamili</FieldLabel>

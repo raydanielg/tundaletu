@@ -12,6 +12,8 @@ import {
 } from "@tabler/icons-react"
 import { cn } from "@workspace/ui/lib/utils"
 import { Avatar, AvatarImage, AvatarFallback } from "@workspace/ui/components/avatar"
+import { useAuth } from "@/components/auth-provider"
+import { IconLock } from "@tabler/icons-react"
 
 type User = {
   id: number
@@ -74,6 +76,7 @@ const initialMessages: Record<number, Message[]> = {
 const currentUser = { id: 0, nickname: "Wewe", username: "@me", avatar: "https://i.pravatar.cc/150?img=12" }
 
 export default function ChatPage() {
+  const { user, loading } = useAuth()
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [messages, setMessages] = useState<Record<number, Message[]>>(initialMessages)
   const [input, setInput] = useState("")
@@ -135,6 +138,49 @@ export default function ChatPage() {
     }
     reader.readAsDataURL(file)
     e.target.value = ""
+  }
+
+  if (loading) {
+    return (
+      <div className="flex h-svh items-center justify-center bg-background">
+        <div className="size-8 animate-spin rounded-full border-2 border-muted border-t-primary" />
+      </div>
+    )
+  }
+
+  if (!user) {
+    return (
+      <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6">
+        <div className="flex w-full max-w-sm flex-col items-center gap-6">
+          <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-primary/10">
+            <IconLock className="size-8 text-primary" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-xl font-bold">Inahitaji Kuingia</h1>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              Unahitaji kuingia akaunti yako ya Tunda ili kuona na kutumia chat. Tafadhali ingia au jiunge.
+            </p>
+          </div>
+          <div className="flex w-full flex-col gap-2">
+            <a
+              href="/login"
+              className="flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+            >
+              Ingia Akaunti
+            </a>
+            <a
+              href="/signup"
+              className="flex w-full items-center justify-center rounded-lg border px-4 py-2.5 text-sm font-medium hover:bg-muted transition-colors"
+            >
+              Jiunge Sasa
+            </a>
+          </div>
+          <a href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            &larr; Rudi Nyumbani
+          </a>
+        </div>
+      </div>
+    )
   }
 
   return (

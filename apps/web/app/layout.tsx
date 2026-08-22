@@ -2,6 +2,7 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google"
 
 import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AuthProvider } from "@/components/auth-provider"
 import { cn } from "@workspace/ui/lib/utils";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'})
@@ -31,7 +32,9 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", roboto.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   )
