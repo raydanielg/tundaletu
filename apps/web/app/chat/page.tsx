@@ -13,6 +13,8 @@ import {
 import { cn } from "@workspace/ui/lib/utils"
 import { Avatar, AvatarImage, AvatarFallback } from "@workspace/ui/components/avatar"
 import { useAuth } from "@/components/auth-provider"
+import { usePayment } from "@/components/payment-provider"
+import { PaymentModal } from "@/components/payment-modal"
 import { IconLock } from "@tabler/icons-react"
 
 type User = {
@@ -77,6 +79,8 @@ const currentUser = { id: 0, nickname: "Wewe", username: "@me", avatar: "https:/
 
 export default function ChatPage() {
   const { user, loading } = useAuth()
+  const { payment } = usePayment()
+  const [showPayment, setShowPayment] = useState(false)
   const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [messages, setMessages] = useState<Record<number, Message[]>>(initialMessages)
   const [input, setInput] = useState("")
@@ -183,6 +187,37 @@ export default function ChatPage() {
     )
   }
 
+  if (!payment.hasPaid) {
+    return (
+      <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6">
+        <div className="flex w-full max-w-sm flex-col items-center gap-6">
+          <div className="mx-auto flex size-16 items-center justify-center rounded-2xl bg-primary/10">
+            <IconLock className="size-8 text-primary" />
+          </div>
+          <div className="text-center">
+            <h1 className="text-xl font-bold">Inahitaji Mujiuko</h1>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              Chat imefungwa. Unahitaji kulipia mujiuko wa Tunda ili kuongea na watu wengine.
+            </p>
+          </div>
+          <button
+            onClick={() => setShowPayment(true)}
+            className="flex w-full items-center justify-center rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
+          >
+            Lipia Mujiuko Sasa
+          </button>
+          <a href="/dashboard" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            Angalia Dashboard
+          </a>
+          <a href="/" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            &larr; Rudi Nyumbani
+          </a>
+        </div>
+        <PaymentModal open={showPayment} onClose={() => setShowPayment(false)} reason="Lipia mujiuko ili kufungua chat na kuongea na watu wote." />
+      </div>
+    )
+  }
+
   return (
     <div className="flex h-svh flex-col bg-background">
       <header className="flex items-center justify-between border-b bg-background/95 px-4 py-3 backdrop-blur shrink-0">
@@ -207,6 +242,11 @@ export default function ChatPage() {
             <IconCircleFilled className="size-2 text-primary" />
             <span className="text-xs font-medium text-primary">{onlineUsers.length} Online</span>
           </div>
+          <a href="/dashboard" className="hidden sm:block">
+            <button className="rounded-lg p-2 text-muted-foreground hover:bg-muted hover:text-foreground">
+              <IconUsers className="size-4" />
+            </button>
+          </a>
         </div>
       </header>
 

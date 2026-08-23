@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Roboto } from "next/font/google"
 import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AuthProvider } from "@/components/auth-provider"
+import { PaymentProvider } from "@/components/payment-provider"
 import { cn } from "@workspace/ui/lib/utils";
 
 const roboto = Roboto({subsets:['latin'],variable:'--font-sans'})
@@ -33,7 +34,9 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <AuthProvider>{children}</AuthProvider>
+          <AuthProvider>
+            <PaymentProvider>{children}</PaymentProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
